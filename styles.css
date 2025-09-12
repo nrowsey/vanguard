@@ -1,7 +1,9 @@
 /* CSS BY YOUR NAME */
+/* Natalia Rowsey */
 
 /* IMPORTED FONTS*/
-/* IMPORT "INTER" FROM GOOGLE FONTS"
+/* IMPORT "INTER" FROM GOOGLE FONTS" */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap");
 
 /* CSS RESET */
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -59,12 +61,26 @@ table {
     --white: #EAEAEA;
     --black: #000000;
     --charcoal: #333333;
-    --font: "Inter", sans-serif;
+    --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+    /* optional extras for layout/theme harmony */
+    --bg: #0b0f19;
+    --bg-2: #0f1422;
+    --radius: 14px;
 }
 
 /* GLOBAL STYLES (MOBILE FIRST (SMALL) */
+body {
+    font-family: var(--font);
+    color: var(--white);
+    background: var(--bg);
+    line-height: 1.6;
+}
 
 /* MIN-WIDTH OF THE PAGE SHOULD NOT GO BELOW 400PX */
+html, body {
+    min-width: 400px;
+}
 
 /* ADD A DIV WITH THE CLASS OF CONTAINER TO EVERY CONTENT CONTAINER THIS IS ALLOW THE BASE ELEMENTS TO BE 100% WIDTH, BUT CONSTRAIN THE ACTUAL CONTENT TO 90% */
 .container {
@@ -73,8 +89,16 @@ table {
     margin: 0 auto;
 }
 
+/* (basic header helpers so the floating logo has a positioning context) */
+.site-header { background: #0a0f1a; border-bottom: 1px solid rgba(255,255,255,.08); position: sticky; top: 0; z-index: 10; }
+.header-row { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
+.site-title { position: relative; padding-left: 4.25rem; font-weight: 800; font-size: 1.125rem; }
+.primary-nav { display: flex; gap: 1rem; text-transform: uppercase; font-weight: 700; }
+.primary-nav a { color: var(--white); opacity: .9; text-decoration: none; }
+.primary-nav a:hover, .primary-nav a:focus-visible { opacity: 1; text-decoration: underline; text-underline-offset: .25rem; }
+
 /* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
- {
+.hero {
     background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/vanguard-hero.jpg') no-repeat center center/cover;
     height: 80vh;
     display: grid;
@@ -85,15 +109,17 @@ table {
 }
 
 /* ADD FLOATING SVG LOGO BEFORE THE H1 */
- {
+.site-title::before {
     content: "";
-
-    left:-.5rem;
+    position: absolute;
+    top: 50%;
+    left: -.5rem;
+    transform: translateY(-50%);
     width: 3.75rem;
     height: 3.75rem;
     background: url('images/vanguard-logo.svg') no-repeat center/contain;
-
 }
+
 /* THIS ONE IS DONE FOR YOU */
 #bar-chart {
     display: grid;
@@ -113,7 +139,7 @@ table {
     background: var(--charcoal);
     border-radius: 10px;
     position: relative;
-    transition: ;
+    transition: height .4s ease;   /* ⬅️ filled in */
     height: 0;
 }
 /* THIS ONE IS DONE FOR YOU */
@@ -140,22 +166,48 @@ table {
     animation: stepUp 1s ease-in-out forwards;
 }
 
+/* helpful section styles (no comment changes needed) */
+.section { padding-block: 2.5rem; }
+.card-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.card {
+    background: #0b66ff;
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.1rem 1.2rem 1.2rem;
+}
+.results { background: #0b66ff; color: #0e1016; }
+.results-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+.panel { background: rgba(0,0,0,.22); border-radius: var(--radius); padding: 1rem; }
+.data-table caption { text-align: left; margin-bottom: .5rem; color: #eaf1ff; font-weight: 600; }
+.data-table thead th { background: #111214; color: #e5e7eb; padding: .75rem .85rem; text-align: left; }
+.data-table tbody th, .data-table tbody td {
+    padding: .7rem .85rem;
+    background: #1b1c20; color: #e5e7eb; border-bottom: 1px solid #2a2c33;
+}
+.data-table tbody tr:nth-child(2n) td,
+.data-table tbody tr:nth-child(2n) th { background: #23252b; }
 
 /* MEDIA QUERIES (MEDIUM) */ 
-
-    #results {
+@media (min-width: 48rem) {
+    /* was: #results { grid-template-columns: 1fr 1fr; } */
+    .results-grid {
         grid-template-columns: 1fr 1fr;
     }
-    .results-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+    /* was: .results-container {...} — aligning with your grid instead */
+    .results-grid { align-items: start; gap: 1.25rem; }
     .results-table {
         width: 50%;
     }
-    .bar-chart {
+    /* was: .bar-chart { width: 50%; } — your HTML uses #bar-chart */
+    #bar-chart {
         width: 50%;
     }
 
+    .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
 
 /* MEDIA QUERIES (LARGE) */
+@media (min-width: 64rem) {
+    .hero { height: 66vh; }
+    .primary-nav { gap: 1.5rem; }
+}
