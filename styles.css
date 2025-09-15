@@ -100,7 +100,11 @@ html, body {
 .btn:hover{ background:#1c4ed8; }
 
 /* Little blue strip under header you included in HTML */
-.header-accent{ height:4px; background:var(--blue); }
+.header-accent{
+  height:4px;
+  background: linear-gradient(90deg, rgba(0,123,255,0.95), rgba(0,123,255,0.6));
+  box-shadow: 0 2px 6px rgba(0,123,255,0.45);
+}
 
 /* Make hero text sit above the background image & keep readable width */
 .hero .hero-content{ position:relative; max-width:900px; }
@@ -117,11 +121,11 @@ html, body {
 
 /* (basic header helpers so the floating logo has a positioning context) */
 .site-header { background: #0a0f1a; border-bottom: 1px solid rgba(255,255,255,.08); position: sticky; top: 0; z-index: 10; }
-.header-row { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0; }
-.site-title { position: relative; padding-left: 4.25rem; font-weight: 800; font-size: 1.125rem; }
-.primary-nav { display: flex; gap: 1rem; text-transform: uppercase; font-weight: 700; }
-.primary-nav a { color: var(--white); opacity: .9; text-decoration: none; }
-.primary-nav a:hover, .primary-nav a:focus-visible { opacity: 1; text-decoration: underline; text-underline-offset: .25rem; }
+.header-row { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0 1.15rem; }
+.site-title { position: relative; padding-left: 0; font-weight: 800; font-size: 1.125rem; }
+.primary-nav { display: flex; gap: 1rem; text-transform: uppercase; font-weight: 700; font-size: .875rem; }
+.primary-nav a { color: var(--blue); opacity: 1; text-decoration: none; }
+.primary-nav a:hover, .primary-nav a:focus-visible { color: #1c4ed8; text-decoration: underline; text-underline-offset: .25rem; }
 
 /* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
 .hero {
@@ -136,15 +140,10 @@ html, body {
 
 /* ADD FLOATING SVG LOGO BEFORE THE H1 */
 .site-title::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -.5rem;
-    transform: translateY(-50%);
-    width: 3.75rem;
-    height: 3.75rem;
-    background: url('images/vanguard-logo.svg') no-repeat center/contain;
+    content: none;
 }
+.logo{ display:none; }
+.brand-text{ color:#1c4ed8; }
 
 /* THIS ONE IS DONE FOR YOU */
 #bar-chart {
