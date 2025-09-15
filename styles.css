@@ -35,24 +35,12 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
 blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
+q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
 
 /* ROOT VARIABLES */
 :root {
@@ -78,9 +66,7 @@ body {
 }
 
 /* MIN-WIDTH OF THE PAGE SHOULD NOT GO BELOW 400PX */
-html, body {
-    min-width: 400px;
-}
+html, body { min-width: 400px; }
 
 /* Visually-hidden utility used by your nav heading */
 .sr-only{
@@ -121,8 +107,15 @@ html, body {
 
 /* (basic header helpers so the floating logo has a positioning context) */
 .site-header { background: #0a0f1a; border-bottom: 1px solid rgba(255,255,255,.08); position: sticky; top: 0; z-index: 10; }
-.header-row { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0 1.15rem; }
-.site-title { position: relative; padding-left: 0; font-weight: 800; font-size: 1.125rem; }
+/* more space below the menu */
+.header-row { display: flex; align-items: center; justify-content: space-between; padding: .85rem 0 1.25rem; }
+
+/* Vanguard title + brand */
+.site-title { position: relative; padding-left: 2.75rem; font-weight: 800; font-size: 1.125rem; }
+.site-title a { color: var(--blue); text-decoration: none; }   /* make title same blue as menu */
+.brand-text { color: var(--blue); }                             /* ensure exact match */
+
+/* Menu */
 .primary-nav { display: flex; gap: 1rem; text-transform: uppercase; font-weight: 700; font-size: .875rem; }
 .primary-nav a { color: var(--blue); opacity: 1; text-decoration: none; }
 .primary-nav a:hover, .primary-nav a:focus-visible { color: #1c4ed8; text-decoration: underline; text-underline-offset: .25rem; }
@@ -139,11 +132,19 @@ html, body {
 }
 
 /* ADD FLOATING SVG LOGO BEFORE THE H1 */
+/* Remove the diamond character span, but keep the SVG logo, smaller */
 .site-title::before {
-    content: none;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 2rem;
+    height: 2rem;
+    background: url('images/vanguard-logo.svg') no-repeat center/contain;
 }
+/* hide the diamond glyph span */
 .logo{ display:none; }
-.brand-text{ color:#1c4ed8; }
 
 /* THIS ONE IS DONE FOR YOU */
 #bar-chart {
@@ -179,17 +180,11 @@ html, body {
     color: var(--white);
 }
 @keyframes stepUp {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: var(--height);
-    }
+    0% { height: 0; }
+    100% { height: var(--height); }
 }
 /* ADD ANIMATION ON stepUp for 1s ease-in-out forwards */
-.bar {
-    animation: stepUp 1s ease-in-out forwards;
-}
+.bar { animation: stepUp 1s ease-in-out forwards; }
 
 /* helpful section styles (no comment changes needed) */
 .section { padding-block: 2.5rem; }
@@ -235,22 +230,15 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 /* Align cards/panels nicely in the grid */
 .results-grid{ align-items:start; }
 
-
 /* MEDIA QUERIES (MEDIUM) */ 
 @media (min-width: 48rem) {
     /* was: #results { grid-template-columns: 1fr 1fr; } */
-    .results-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .results-grid { grid-template-columns: 1fr 1fr; }
     /* was: .results-container {...} — aligning with your grid instead */
     .results-grid { align-items: start; gap: 1.25rem; }
-    .results-table {
-        width: 50%;
-    }
+    .results-table { width: 50%; }
     /* was: .bar-chart { width: 50%; } — your HTML uses #bar-chart */
-    #bar-chart {
-        width: 50%;
-    }
+    #bar-chart { width: 50%; }
 
     .card-grid { grid-template-columns: repeat(3, 1fr); }
 }
