@@ -35,7 +35,9 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
-body { line-height: 1; }
+body {
+    line-height: 1;
+}
 ol, ul { list-style: none; }
 blockquote, q { quotes: none; }
 blockquote:before, blockquote:after,
@@ -89,7 +91,9 @@ html, body { min-width: 400px; }
 .header-accent{
   height:4px;
   background: linear-gradient(90deg, rgba(0,123,255,0.95), rgba(0,123,255,0.6));
-  box-shadow: 0 2px 6px rgba(0,123,255,0.45);
+  box-shadow:
+    0 10px 32px rgba(0,123,255,0.45),
+    0 0 48px rgba(0,123,255,0.35);
 }
 
 /* Make hero text sit above the background image & keep readable width */
@@ -112,8 +116,8 @@ html, body { min-width: 400px; }
 
 /* Vanguard title + brand */
 .site-title { position: relative; padding-left: 2.75rem; font-weight: 800; font-size: 1.125rem; }
-.site-title a { color: var(--blue); text-decoration: none; }   /* make title same blue as menu */
-.brand-text { color: var(--blue); }                             /* ensure exact match */
+.site-title a { color: var(--blue); text-decoration: none; }   /* title same blue as menu */
+.brand-text { color: var(--blue); }
 
 /* Menu */
 .primary-nav { display: flex; gap: 1rem; text-transform: uppercase; font-weight: 700; font-size: .875rem; }
@@ -130,9 +134,13 @@ html, body { min-width: 400px; }
     padding: 1rem;
     overflow: hidden;
 }
+/* hero heading now h1 + bold */
+.hero h1{ font-weight:800; font-size:1.9rem; }
+/* subheading width tightened for a clean 2-line wrap */
+.hero p{ max-width:38ch; margin:0 auto; }
 
 /* ADD FLOATING SVG LOGO BEFORE THE H1 */
-/* Remove the diamond character span, but keep the SVG logo, smaller */
+/* keep SVG logo, smaller; remove diamond glyph span */
 .site-title::before {
     content: "";
     position: absolute;
@@ -143,7 +151,6 @@ html, body { min-width: 400px; }
     height: 2rem;
     background: url('images/vanguard-logo.svg') no-repeat center/contain;
 }
-/* hide the diamond glyph span */
 .logo{ display:none; }
 
 /* THIS ONE IS DONE FOR YOU */
@@ -241,6 +248,9 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
     #bar-chart { width: 50%; }
 
     .card-grid { grid-template-columns: repeat(3, 1fr); }
+
+    /* larger hero title on medium for hierarchy */
+    .hero h1{ font-size:2.25rem; }
 }
 
 /* MEDIA QUERIES (LARGE) */
