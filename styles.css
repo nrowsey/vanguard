@@ -222,6 +222,35 @@ html, body {
     border-radius: var(--radius);
     padding: 1.1rem 1.2rem 1.2rem;
 }
+
+/* WHITE CONTENT BLOCK: Our Expertise + What We Offer */
+.intro,
+.services{
+    background:#ffffff;
+    color:#0e1116;
+}
+.intro p,
+.services p{ color:#334155; }
+
+/* Make the two headings match and be larger (h2-like) */
+.intro h2,
+.services h2{
+    font-weight:800;
+    font-size:2rem;
+    line-height:1.2;
+    margin-bottom:.75rem;
+    color:#0e1116;
+}
+
+/* Service card headings should be h4-sized (works for h3 or h4 markup) */
+.card h3,
+.card h4{
+    font-weight:800;
+    font-size:1.125rem;
+    margin-bottom:.35rem;
+}
+
+/* Results section stays blue */
 .results { background: #0b66ff; color: #0e1016; }
 .results-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
 .panel { background: rgba(0,0,0,.22); border-radius: var(--radius); padding: 1rem; }
@@ -277,10 +306,18 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 
     /* Larger hero title on medium for hierarchy (h1 or h2) */
     .hero h1, .hero h2{ font-size:2.6rem; }
+
+    /* Larger section headings on medium for the white block */
+    .intro h2,
+    .services h2{ font-size:2.4rem; }
 }
 
 /* MEDIA QUERIES (LARGE) */
 @media (min-width: 64rem) {
     .hero { height: 66vh; }
     .primary-nav { gap: 1.5rem; }
+
+    /* Even larger section headings on large screens */
+    .intro h2,
+    .services h2{ font-size:2.6rem; }
 }
