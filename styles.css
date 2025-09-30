@@ -35,24 +35,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
 
 /* ROOT VARIABLES */
 :root {
@@ -78,9 +65,7 @@ body {
 }
 
 /* MIN-WIDTH OF THE PAGE SHOULD NOT GO BELOW 400PX */
-html, body {
-    min-width: 400px;
-}
+html, body { min-width: 400px; }
 
 /* Visually-hidden utility used by your nav heading */
 .sr-only{
@@ -201,17 +186,11 @@ html, body {
     color: var(--white);
 }
 @keyframes stepUp {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: var(--height);
-    }
+    0% { height: 0; }
+    100% { height: var(--height); }
 }
 /* ADD ANIMATION ON stepUp for 1s ease-in-out forwards */
-.bar {
-    animation: stepUp 1s ease-in-out forwards;
-}
+.bar { animation: stepUp 1s ease-in-out forwards; }
 
 /* helpful section styles (no comment changes needed) */
 .section { padding-block: 2.5rem; }
@@ -232,23 +211,27 @@ html, body {
 .intro p,
 .services p{ color:#334155; }
 
-/* Make the two headings match and be larger (h2-like) */
+/* Make the two headings match and be larger like h3 (visual scale) */
 .intro h2,
 .services h2{
     font-weight:800;
-    font-size:2rem;
-    line-height:1.2;
+    font-size:1.5rem;   /* h3-like size */
+    line-height:1.25;
     margin-bottom:.75rem;
     color:#0e1116;
 }
 
-/* Service card headings should be h4-sized (works for h3 or h4 markup) */
+/* Service card headings should be h5-sized (and work for h3/h4/h5 markup) */
 .card h3,
-.card h4{
+.card h4,
+.card h5{
     font-weight:800;
-    font-size:1.125rem;
+    font-size:1rem;   /* h5-like */
     margin-bottom:.35rem;
 }
+
+/* Ensure service card body text stays white (overrides .services p gray) */
+.services .card p{ color:#ffffff; }
 
 /* Results section stays blue */
 .results { background: #0b66ff; color: #0e1016; }
@@ -289,27 +272,21 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 /* MEDIA QUERIES (MEDIUM) */ 
 @media (min-width: 48rem) {
     /* was: #results { grid-template-columns: 1fr 1fr; } */
-    .results-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .results-grid { grid-template-columns: 1fr 1fr; }
     /* was: .results-container {...} — aligning with your grid instead */
     .results-grid { align-items: start; gap: 1.25rem; }
-    .results-table {
-        width: 50%;
-    }
+    .results-table { width: 50%; }
     /* was: .bar-chart { width: 50%; } — your HTML uses #bar-chart */
-    #bar-chart {
-        width: 50%;
-    }
+    #bar-chart { width: 50%; }
 
     .card-grid { grid-template-columns: repeat(3, 1fr); }
 
     /* Larger hero title on medium for hierarchy (h1 or h2) */
     .hero h1, .hero h2{ font-size:2.6rem; }
 
-    /* Larger section headings on medium for the white block */
+    /* White block headings scale up slightly on medium */
     .intro h2,
-    .services h2{ font-size:2.4rem; }
+    .services h2{ font-size:1.75rem; }
 }
 
 /* MEDIA QUERIES (LARGE) */
@@ -317,7 +294,7 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
     .hero { height: 66vh; }
     .primary-nav { gap: 1.5rem; }
 
-    /* Even larger section headings on large screens */
+    /* White block headings scale on large */
     .intro h2,
-    .services h2{ font-size:2.6rem; }
+    .services h2{ font-size:1.875rem; }
 }
