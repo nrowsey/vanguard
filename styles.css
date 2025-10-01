@@ -163,7 +163,7 @@ html, body { min-width: 400px; }
     height: 300px;
     width: 100%;
     max-width: 800px;
-    padding: 0 1rem 36px;    /* ⬅️ no extra space above the bars */
+    padding: 0 1rem 36px;  /* no extra top padding; shared bottom baseline for labels */
     position: relative;
 }
 /* ADD ON TRANSITION ON HEIGHT */
@@ -179,7 +179,7 @@ html, body { min-width: 400px; }
 .bar::after {
     content: attr(data-year);
     position: absolute;
-    bottom: -36px;   /* sits exactly at the container’s padded bottom */
+    bottom: -36px;   /* aligns with #bar-chart padded bottom */
     left: 50%;
     transform: translateX(-50%);
     font-size: 1rem;
@@ -238,13 +238,13 @@ html, body { min-width: 400px; }
 /* Proven Results, Profits, Growth should look like h3 + white */
 .results h2,
 .results h3{
-  color:#ffffff;
-  font-weight:800;
-  font-size:1.5rem;
-  line-height:1.25;
-  margin-bottom: 1rem;   /* ⬅️ consistent gap under “Profits” & “Growth” */
+    color:#ffffff;
+    font-weight:800;
+    font-size:1.5rem;
+    line-height:1.25;
+    margin-bottom: 1rem;   /* consistent gap under h3s */
+    text-align:left;
 }
-
 /* Hide the table caption “Yearly Revenue & Growth” in this section */
 .results .data-table caption{ display:none; }
 
@@ -288,14 +288,16 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 }
 
 /* Align cards/panels nicely in the grid */
-.results-grid{ align-items:end; }
+.results-grid{ align-items:start; }
 
 /* MEDIA QUERIES (MEDIUM) */ 
 @media (min-width: 48rem) {
     /* was: #results { grid-template-columns: 1fr 1fr; } */
-    .results-grid { grid-template-columns: 1fr 1fr; }
-    /* was: .results-container {...} — aligning with your grid instead */
-    .results-grid { align-items: end; gap: 1.25rem; }
+    .results-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;         /* headings sit on the same line */
+        gap: 1.25rem;
+    }
 
     /* Make table/chart span the full width of their columns */
     .results-table { width: 100%; }
