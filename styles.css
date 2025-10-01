@@ -234,11 +234,9 @@ html, body { min-width: 400px; }
 .contact p{ color:#cbd5e1; margin-bottom: 1.25rem; }
 
 /* Form layout + fields */
-.contact-form{ display:grid; gap:1rem; }
-/* one column on mobile */
-.form-row{ display:grid; gap:1rem; grid-template-columns:1fr; }
+.contact-form{ display:grid; gap:1.25rem; }  /* ⬅️ more vertical space */
+.form-row{ display:grid; gap:1.25rem; grid-template-columns:1fr; }
 .field{ display:grid; gap:.45rem; }
-label{ font-weight:700; color:#e5e7eb; }
 
 /* Inputs: no rounding */
 input, textarea{
@@ -253,9 +251,19 @@ input:focus, textarea:focus{
 }
 
 /* Button: full-width in its column, no shadow, no rounding */
-.actions{ display:flex; justify-content:flex-end; }
-.actions .btn{ width:100%; border-radius:0; box-shadow:none; padding:.9rem 1rem; }
-
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  align-self:start;              /* top align with textarea row */
+  margin-top:2rem;               /* nudge up; tweak if you want */
+}
+.actions .btn{
+  width:100%;
+  border-radius:.5rem;           /* only the button is rounded */
+  box-shadow:none;
+  padding:1rem 1.1rem;
+  font-size:1.0625rem;           /* smidge bigger */
+}
 /* Results readability on the blue background */
 .results .container > p{ color:#eaf1ff; margin-bottom: 1.5rem; }
 
@@ -285,31 +293,35 @@ input:focus, textarea:focus{
   /* White block headings scale up slightly on medium */
   .intro h2, .services h2{ font-size:1.75rem; }
 
-  /* Contact form: two columns using existing DOM order (no HTML changes) */
+  /* CONTACT FORM (desktop) */
   .contact-form{
-    grid-template-columns: 1fr 1fr; column-gap: 1.25rem; row-gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.5rem;      /* more horizontal space between columns */
+    row-gap: 1.5rem;         /* more vertical space between rows */
   }
   .contact-form .form-row{ display: contents; }  /* flatten wrappers */
 
-  /* map fields by order: 1 Name | 2 Email | 3 Company | 4 Industry | 5 Message */
+  /* order: 1 Name | 2 Email | 3 Company | 4 Industry | 5 Message */
   .contact-form .field:nth-of-type(1){ grid-column:1; } /* Full Name */
   .contact-form .field:nth-of-type(2){ grid-column:2; } /* Email Address */
   .contact-form .field:nth-of-type(3){ grid-column:1; } /* Company Name */
   .contact-form .field:nth-of-type(4){ grid-column:2; } /* Industry */
   .contact-form .field:nth-of-type(5){ grid-column:1; } /* How can we help you? */
-  .contact-form .actions{ grid-column:2; align-self:end; }
 
-  /* keep some bottom room so the button never feels clipped */
-  .contact .container{ padding-bottom: 2rem; }
-}
+  .contact-form .actions{
+    grid-column:2;           /* right column */
+    align-self:start;        /* top align with textarea */
+    margin-top:2rem;         /* match textarea’s box top */
+  }
+}  /* <-- close the 48rem media query */
 
 /* MEDIA QUERIES (LARGE) */
 @media (min-width: 64rem) {
   .hero { height: 66vh; }
   .primary-nav { gap: 1.5rem; }
-  .intro h2, .services h2{ font-size:1.875rem; }
+  .intro h2, .services h2 { font-size: 1.875rem; }
 }
 
 /* neutralize any prior experimental nudges on results panes/charts */
-.results [aria-labelledby="growth-title"] #bar-chart{ transform:none; }
-.results [aria-labelledby="profits-title"]{ transform:none; }
+.results [aria-labelledby="growth-title"] #bar-chart { transform: none; }
+.results [aria-labelledby="profits-title"] { transform: none; }
