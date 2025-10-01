@@ -52,6 +52,9 @@ table { border-collapse: collapse; border-spacing: 0; }
     --bg: #0b0f19;
     --bg-2: #0f1422;
     --radius: 14px;
+
+    /* shared baseline for bar-chart x-axis labels and left column padding */
+    --xaxis-pad: 36px;
 }
 
 /* GLOBAL STYLES (MOBILE FIRST (SMALL) */
@@ -156,7 +159,7 @@ html, body { min-width: 400px; }
     height: 300px;
     width: 100%;
     max-width: 800px;
-    padding: 0 1rem 36px;  /* no extra top padding; shared bottom baseline for labels */
+    padding: 0 1rem var(--xaxis-pad);  /* labels live inside; shared baseline */
     position: relative;
 }
 /* ADD ON TRANSITION ON HEIGHT */
@@ -175,10 +178,11 @@ html, body { min-width: 400px; }
 .bar::after {
     content: attr(data-year);
     position: absolute;
-    bottom: -36px;   /* aligns with #bar-chart padded bottom */
+    bottom: 0;                      /* inside the chart box */
     left: 50%;
     transform: translateX(-50%);
     font-size: 1rem;
+    line-height: 1;
     font-weight: bold;
     color: var(--white);
 }
@@ -277,7 +281,7 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
   margin-bottom: 1.5rem; /* breathing room before charts */
 }
 
-/* Align cards/panels nicely in the grid */
+/* Align cards/panels nicely in the grid (top-align so h3s share a line) */
 .results-grid{ align-items:start; }
 
 /* Keep the table from adding extra bottom gap */
@@ -296,8 +300,10 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
     .results-table { width: 100%; }
     #bar-chart { width: 100%; }
 
-    /* Match the chart’s 36px reserve on the LEFT column so bottoms align */
-    .results [aria-labelledby="profits-title"]{ padding-bottom: 36px; }
+    /* Match the chart’s x-axis reserve on the LEFT column so bottoms align */
+    .results .panel[aria-labelledby="profits-title"]{
+        padding-bottom: var(--xaxis-pad);
+    }
 
     .card-grid { grid-template-columns: repeat(3, 1fr); }
 
@@ -320,13 +326,3 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 /* neutralize any prior experimental nudges on results panes/charts */
 .results [aria-labelledby="growth-title"] #bar-chart{ transform:none; }
 .results [aria-labelledby="profits-title"]{ transform:none; }
-
-/* Match the chart's label reserve so the bottoms line up exactly */
-@media (min-width: 48rem){
-  .results [aria-labelledby="profits-title"]{
-    padding-bottom: calc(36px + 1em); /* 36px chart reserve + ~1 line of label text */
-  }
-}
-.bar::after{
-  line-height: 1; /* add to your existing .bar::after rule */
-}
