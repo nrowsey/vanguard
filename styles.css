@@ -262,20 +262,51 @@ html, body { min-width: 400px; }
 .data-table tbody tr:nth-child(2n) th { background: #23252b; }
 
 /* Contact section basics */
-.contact{ background:var(--bg-2); }
-.contact p{ color:#cbd5e1; }
+.contact{
+  background: var(--bg-2);
+}
+.contact h2{
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+.contact p{
+  color:#cbd5e1;
+  margin-bottom: 1.25rem; /* breathing room before fields */
+}
+
 
 /* Form layout + fields */
 .contact-form{ display:grid; gap:1rem; }
 .form-row{ display:grid; gap:1rem; grid-template-columns:1fr; }
-.field{ display:grid; gap:.4rem; }
-label{ font-weight:600; }
+.field{ display:grid; gap:.45rem; }
+label{ font-weight:700; color:#e5e7eb; }
+
+/* Inputs match mockup: white fields, blue outline */
 input, textarea{
-  width:100%; color:var(--white); background:#0f1422;
-  border:1px solid #2a2f3f; border-radius:.75rem; padding:.8rem 1rem;
+  width:100%;
+  color:#0e1116;
+  background:#ffffff;
+  border:2px solid var(--blue);
+  border-radius:.5rem;
+  padding:.9rem 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
 }
-input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; }
-.actions{ display:flex; justify-content:flex-end; }
+input::placeholder, textarea::placeholder{ color:#64748b; }
+input:focus, textarea:focus{
+  outline: none;
+  border-color:#1c4ed8;
+  box-shadow: 0 0 0 3px rgba(28,78,216,.25);
+}
+
+/* Actions row: button right on desktop, full width on mobile */
+.actions{ display:flex; justify-content:flex-end; padding-top:.25rem; }
+.actions .btn{ min-width: 220px; border-radius:.5rem; }
+
+@media (min-width:48rem){
+  .form-row{ grid-template-columns: 1fr 1fr; gap:1.25rem; }
+  .contact .container{ padding-bottom: 2rem; } /* ensures button not clipped */
+}
 
 /* Results readability on the blue background */
 .results .container > p{
@@ -338,3 +369,8 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 .results [aria-labelledby="profits-title"] figure{
   margin-top: var(--xaxis-pad); /* matches the chart’s label offset */
 }
+
+:root{ --xaxis-pad: 36px; } /* or 40px — use the same value in both places */
+
+#bar-chart{ margin-bottom: var(--xaxis-pad); }
+.bar::after{ bottom: calc(-1 * var(--xaxis-pad)); }
