@@ -328,3 +328,13 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 /* neutralize any prior experimental nudges on results panes/charts */
 .results [aria-labelledby="growth-title"] #bar-chart{ transform:none; }
 .results [aria-labelledby="profits-title"]{ transform:none; }
+
+/* Undo any extra bottom padding we may have added earlier */
+.results .panel[aria-labelledby="profits-title"]{
+  padding-bottom: 0;
+}
+
+/* JUST push the PROFITS table down to bottom-align with the year labels */
+.results [aria-labelledby="profits-title"] figure{
+  margin-top: var(--xaxis-pad); /* matches the chart’s label offset */
+}
