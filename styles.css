@@ -54,7 +54,7 @@ table { border-collapse: collapse; border-spacing: 0; }
     --radius: 14px;
 
     /* shared baseline for bar-chart x-axis labels and left column padding */
-    --xaxis-pad: 36px;
+    --xaxis-pad: 40px;
 }
 
 /* GLOBAL STYLES (MOBILE FIRST (SMALL) */
@@ -159,8 +159,10 @@ html, body { min-width: 400px; }
     height: 300px;
     width: 100%;
     max-width: 800px;
-    padding: 0 1rem var(--xaxis-pad);  /* labels live inside; shared baseline */
+    padding: 0 1rem 0;             /* no internal bottom pad */
+    margin-bottom: var(--xaxis-pad); /* reserve space BELOW for year labels */
     position: relative;
+    overflow: visible;             /* let labels render outside */
 }
 /* ADD ON TRANSITION ON HEIGHT */
 .bar {
@@ -178,7 +180,7 @@ html, body { min-width: 400px; }
 .bar::after {
     content: attr(data-year);
     position: absolute;
-    bottom: 0;                      /* inside the chart box */
+    bottom: calc(-1 * var(--xaxis-pad));  /* labels sit OUTSIDE */
     left: 50%;
     transform: translateX(-50%);
     font-size: 1rem;
@@ -236,7 +238,7 @@ html, body { min-width: 400px; }
     font-weight:800;
     font-size:1.5rem;
     line-height:1.25;
-    margin-bottom: 1rem;   /* consistent gap under h3s */
+    margin-bottom: 1.25rem;   /* a bit more breathing room under h3s */
     text-align:left;
 }
 /* Hide the table caption “Yearly Revenue & Growth” in this section */
