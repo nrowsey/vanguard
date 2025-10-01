@@ -23,12 +23,12 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -41,28 +41,28 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 /* ROOT VARIABLES */
 :root {
-    --blue: #007BFF;
-    --red: #FF4500;
-    --white: #EAEAEA;
-    --black: #000000;
-    --charcoal: #333333;
-    --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --blue: #007BFF;
+  --red: #FF4500;
+  --white: #EAEAEA;
+  --black: #000000;
+  --charcoal: #333333;
+  --font: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
-    /* optional extras for layout/theme harmony */
-    --bg: #0b0f19;
-    --bg-2: #0f1422;
-    --radius: 14px;
+  /* optional extras for layout/theme harmony */
+  --bg: #0b0f19;
+  --bg-2: #0f1422;
+  --radius: 14px;
 
-    /* shared baseline for bar-chart x-axis labels and left column padding */
-    --xaxis-pad: 40px;
+  /* shared baseline for bar-chart year labels & profits-table nudge */
+  --xaxis-pad: 40px;
 }
 
 /* GLOBAL STYLES (MOBILE FIRST (SMALL) */
 body {
-    font-family: var(--font);
-    color: var(--white);
-    background: var(--bg);
-    line-height: 1.6;
+  font-family: var(--font);
+  color: var(--white);
+  background: var(--bg);
+  line-height: 1.6;
 }
 
 /* MIN-WIDTH OF THE PAGE SHOULD NOT GO BELOW 400PX */
@@ -80,7 +80,7 @@ html, body { min-width: 400px; }
   color:#fff;
   font-weight:700;
   padding:.75rem 1rem;
-  border-radius:.5rem;                /* less rounding */
+  border-radius:.5rem;                /* hero/button default: slightly rounded */
   box-shadow:0 10px 24px rgba(0,0,0,.35);
   text-decoration:none;               /* no underline */
 }
@@ -121,13 +121,13 @@ html, body { min-width: 400px; }
 
 /* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/vanguard-hero.jpg') no-repeat center center/cover;
-    height: 80vh;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 1rem;
-    overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/vanguard-hero.jpg') no-repeat center center/cover;
+  height: 80vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  overflow: hidden;
 }
 /* hero heading big & bold — applies whether it's h1 or h2 */
 .hero h1, .hero h2{ font-weight:800; font-size:2.1rem; }
@@ -138,72 +138,72 @@ html, body { min-width: 400px; }
 /* ADD FLOATING SVG LOGO BEFORE THE H1 */
 /* keep SVG (smaller); hide the diamond glyph span */
 .site-title::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 2rem;
-    height: 2rem;
-    background: url('images/vanguard-logo.svg') no-repeat center/contain;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  background: url('images/vanguard-logo.svg') no-repeat center/contain;
 }
 .logo{ display:none; }
 
 /* THIS ONE IS DONE FOR YOU */
 #bar-chart {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    align-items: flex-end;
-    justify-content: space-around;
-    gap: 1rem;
-    height: 300px;
-    width: 100%;
-    max-width: 800px;
-    padding: 0 1rem 0;             /* no internal bottom pad */
-    margin-bottom: var(--xaxis-pad); /* reserve space BELOW for year labels */
-    position: relative;
-    overflow: visible;             /* let labels render outside */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 1rem;
+  height: 300px;
+  width: 100%;
+  max-width: 800px;
+  padding: 0 1rem 0;                 /* no internal bottom pad */
+  margin-bottom: var(--xaxis-pad);   /* reserve space BELOW for year labels */
+  position: relative;
+  overflow: visible;                  /* let labels render outside */
 }
 /* ADD ON TRANSITION ON HEIGHT */
 .bar {
-    width: 50px;
-    background: var(--charcoal);
-    border-radius: 10px;
-    position: relative;
-    transition: height .4s ease;   /* ⬅️ filled in */
-    height: 0;
+  width: 50px;
+  background: var(--charcoal);
+  border-radius: 10px;
+  position: relative;
+  transition: height .4s ease;
+  height: 0;
 }
 @keyframes stepUp { 0% { height: 0; } 100% { height: var(--height); } }
 /* ADD ANIMATION ON stepUp for 1s ease-in-out forwards */
 .bar { animation: stepUp 1s ease-in-out forwards; }
 /* THIS ONE IS DONE FOR YOU */
 .bar::after {
-    content: attr(data-year);
-    position: absolute;
-    bottom: calc(-1 * var(--xaxis-pad));  /* labels sit OUTSIDE */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1rem;
-    line-height: 1;
-    font-weight: bold;
-    color: var(--white);
+  content: attr(data-year);
+  position: absolute;
+  bottom: calc(-1 * var(--xaxis-pad));  /* labels sit OUTSIDE */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: bold;
+  color: var(--white);
 }
 
 /* helpful section styles (no comment changes needed) */
 .section { padding-block: 2.5rem; }
 .card-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
 .card {
-    background: #0b66ff;
-    color: #fff;
-    border-radius: var(--radius);
-    padding: 1.1rem 1.2rem 1.2rem;
+  background: #0b66ff;
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem 1.2rem;
 }
 
 /* WHITE CONTENT BLOCK: Our Expertise + What We Offer */
 .intro,
 .services{
-    background:#ffffff;
-    color:#0e1116;
+  background:#ffffff;
+  color:#0e1116;
 }
 .intro p,
 .services p{ color:#334155; }
@@ -211,20 +211,20 @@ html, body { min-width: 400px; }
 /* Make the two headings match and be larger like h3 (visual scale) */
 .intro h2,
 .services h2{
-    font-weight:800;
-    font-size:1.5rem;   /* h3-like size */
-    line-height:1.25;
-    margin-bottom:.75rem;
-    color:#0e1116;
+  font-weight:800;
+  font-size:1.5rem;   /* h3-like size */
+  line-height:1.25;
+  margin-bottom:.75rem;
+  color:#0e1116;
 }
 
 /* Service card headings should be h5-sized (and work for h3/h4/h5 markup) */
 .card h3,
 .card h4,
 .card h5{
-    font-weight:800;
-    font-size:1rem;   /* h5-like */
-    margin-bottom:.35rem;
+  font-weight:800;
+  font-size:1rem;   /* h5-like */
+  margin-bottom:.35rem;
 }
 /* Ensure service card body text stays white (overrides .services p gray) */
 .services .card p{ color:#ffffff; }
@@ -234,12 +234,12 @@ html, body { min-width: 400px; }
 /* Proven Results, Profits, Growth should look like h3 + white */
 .results h2,
 .results h3{
-    color:#ffffff;
-    font-weight:800;
-    font-size:1.5rem;
-    line-height:1.25;
-    margin-bottom: 1.25rem;   /* a bit more breathing room under h3s */
-    text-align:left;
+  color:#ffffff;
+  font-weight:800;
+  font-size:1.5rem;
+  line-height:1.25;
+  margin-bottom: 1.25rem;   /* breathing room under h3s */
+  text-align:left;
 }
 /* Hide the table caption “Yearly Revenue & Growth” in this section */
 .results .data-table caption{ display:none; }
@@ -251,12 +251,11 @@ html, body { min-width: 400px; }
 .results-grid { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
 
 /* Table typography — center all cells */
-.data-table caption { text-align: left; margin-bottom: .5rem; color: #eaf1ff; font-weight: 600; }
 .data-table thead th { background: #111214; color: #e5e7eb; padding: .75rem .85rem; text-align: center; }
 .data-table tbody th, .data-table tbody td {
-    padding: .7rem .85rem;
-    background: #1b1c20; color: #e5e7eb; border-bottom: 1px solid #2a2c33;
-    text-align: center;
+  padding: .7rem .85rem;
+  background: #1b1c20; color: #e5e7eb; border-bottom: 1px solid #2a2c33;
+  text-align: center;
 }
 .data-table tbody tr:nth-child(2n) td,
 .data-table tbody tr:nth-child(2n) th { background: #23252b; }
@@ -275,102 +274,71 @@ html, body { min-width: 400px; }
   margin-bottom: 1.25rem; /* breathing room before fields */
 }
 
-
 /* Form layout + fields */
 .contact-form{ display:grid; gap:1rem; }
+/* one column on mobile */
 .form-row{ display:grid; gap:1rem; grid-template-columns:1fr; }
 .field{ display:grid; gap:.45rem; }
 label{ font-weight:700; color:#e5e7eb; }
 
-/* Inputs match mockup: white fields, blue outline */
+/* Inputs: no rounding */
 input, textarea{
   width:100%;
   color:#0e1116;
   background:#ffffff;
   border:2px solid var(--blue);
-  border-radius:.5rem;
-  padding:.9rem 1rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+  border-radius:0;             /* ⬅️ no rounding */
+  padding:.9rem;
+  box-shadow:none;             /* remove any inner/outer shadows */
 }
-input::placeholder, textarea::placeholder{ color:#64748b; }
-input:focus, textarea:focus{
+
+/* placeholders + focus */
+input::placeholder,
+textarea::placeholder { color: #64748b; }
+
+input:focus,
+textarea:focus{
   outline: none;
-  border-color:#1c4ed8;
-  box-shadow: 0 0 0 3px rgba(28,78,216,.25);
+  border-color: #1c4ed8;
+  box-shadow: 0 0 0 3px rgba(28, 78, 216, .25);
 }
 
-/* Actions row: button right on desktop, full width on mobile */
-.actions{ display:flex; justify-content:flex-end; padding-top:.25rem; }
-.actions .btn{ min-width: 220px; border-radius:.5rem; }
-
-@media (min-width:48rem){
-  .form-row{ grid-template-columns: 1fr 1fr; gap:1.25rem; }
-  .contact .container{ padding-bottom: 2rem; } /* ensures button not clipped */
+/* Button: full-width in its column, no shadow, no rounding */
+.actions{ display: flex; justify-content: flex-end; }
+.actions .btn{
+  width: 100%;
+  border-radius: 0;            /* squared */
+  box-shadow: none;            /* no inner/outer shadow */
+  padding: .9rem 1rem;
 }
 
-/* Results readability on the blue background */
-.results .container > p{
-  color:#eaf1ff;
-  margin-bottom: 1.5rem; /* breathing room before charts */
+/* Two columns on desktop using existing DOM order
+   1 Full Name  -> left
+   2 Email      -> right
+   3 Company    -> left
+   4 Industry   -> right
+   5 Message    -> left
+   Submit       -> right (full width)
+*/
+@media (min-width: 48rem){
+  .contact-form{
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.25rem;
+    row-gap: 1rem;
+  }
+  .contact-form .form-row{ display: contents; }  /* flatten wrappers */
+
+  .contact-form .field:nth-of-type(1){ grid-column: 1; } /* Full Name */
+  .contact-form .field:nth-of-type(2){ grid-column: 2; } /* Email Address */
+  .contact-form .field:nth-of-type(3){ grid-column: 1; } /* Company Name */
+  .contact-form .field:nth-of-type(4){ grid-column: 2; } /* Industry */
+  .contact-form .field:nth-of-type(5){ grid-column: 1; } /* How can we help you? */
+
+  .contact-form .actions{
+    grid-column: 2;            /* Submit in the right column */
+    align-self: end;
+  }
+
+  /* keep some bottom room so the button never feels clipped */
+  .contact .container{ padding-bottom: 2rem; }
 }
-
-/* Align cards/panels nicely in the grid (top-align so h3s share a line) */
-.results-grid{ align-items:start; }
-
-/* Keep the table from adding extra bottom gap */
-.results .results-table{ margin-bottom: 0; }
-
-/* MEDIA QUERIES (MEDIUM) */ 
-@media (min-width: 48rem) {
-    /* was: #results { grid-template-columns: 1fr 1fr; } */
-    .results-grid {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;         /* headings sit on the same line */
-        gap: 1.25rem;
-    }
-
-    /* Make table/chart span the full width of their columns */
-    .results-table { width: 100%; }
-    #bar-chart { width: 100%; }
-
-    /* Match the chart’s x-axis reserve on the LEFT column so bottoms align */
-    .results .panel[aria-labelledby="profits-title"]{
-        padding-bottom: var(--xaxis-pad);
-    }
-
-    .card-grid { grid-template-columns: repeat(3, 1fr); }
-
-    /* Larger hero title on medium for hierarchy (h1 or h2) */
-    .hero h1, .hero h2{ font-size:2.6rem; }
-
-    /* White block headings scale up slightly on medium */
-    .intro h2, .services h2{ font-size:1.75rem; }
-}
-
-/* MEDIA QUERIES (LARGE) */
-@media (min-width: 64rem) {
-    .hero { height: 66vh; }
-    .primary-nav { gap: 1.5rem; }
-
-    /* White block headings scale on large */
-    .intro h2, .services h2{ font-size:1.875rem; }
-}
-
-/* neutralize any prior experimental nudges on results panes/charts */
-.results [aria-labelledby="growth-title"] #bar-chart{ transform:none; }
-.results [aria-labelledby="profits-title"]{ transform:none; }
-
-/* Undo any extra bottom padding we may have added earlier */
-.results .panel[aria-labelledby="profits-title"]{
-  padding-bottom: 0;
-}
-
-/* JUST push the PROFITS table down to bottom-align with the year labels */
-.results [aria-labelledby="profits-title"] figure{
-  margin-top: var(--xaxis-pad); /* matches the chart’s label offset */
-}
-
-:root{ --xaxis-pad: 36px; } /* or 40px — use the same value in both places */
-
-#bar-chart{ margin-bottom: var(--xaxis-pad); }
-.bar::after{ bottom: calc(-1 * var(--xaxis-pad)); }
