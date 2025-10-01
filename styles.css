@@ -276,7 +276,7 @@ input:focus, textarea:focus{
 /* JUST push the PROFITS table down to bottom-align with the year labels */
 .results [aria-labelledby="profits-title"] figure{ margin-top: var(--xaxis-pad); }
 
-/* MEDIA QUERIES (MEDIUM) */ 
+/* MEDIA QUERY (medium) */ 
 @media (min-width: 48rem) {
   /* two equal columns in results; headings align */
   .results-grid { grid-template-columns: 1fr 1fr; align-items: start; gap: 1.25rem; }
@@ -316,13 +316,6 @@ input:focus, textarea:focus{
 }
 }  /* <-- close the 48rem media query */
 
-/* MEDIA QUERIES (LARGE) */
-@media (min-width: 64rem) {
-  .hero { height: 66vh; }
-  .primary-nav { gap: 1.5rem; }
-  .intro h2, .services h2 { font-size: 1.875rem; }
-}
-
 /* neutralize any prior experimental nudges on results panes/charts */
 .results [aria-labelledby="growth-title"] #bar-chart { transform: none; }
 .results [aria-labelledby="profits-title"] { transform: none; }
@@ -350,3 +343,11 @@ input:focus, textarea:focus{
 
 /* only mailto (email) is blue */
 .site-footer a[href^="mailto:"]{ color: var(--blue); }
+
+
+/* MEDIA QUERY (large) */  
+@media (min-width: 64rem) {
+  .hero { height: 66vh; }
+  .primary-nav { gap: 1.5rem; }
+  .intro h2, .services h2 { font-size: 1.875rem; }
+}
