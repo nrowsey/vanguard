@@ -163,7 +163,7 @@ html, body { min-width: 400px; }
     height: 300px;
     width: 100%;
     max-width: 800px;
-    padding: 1rem 1rem 36px;  /* extra bottom padding creates the shared baseline */
+    padding: 0 1rem 36px;    /* ⬅️ no extra space above the bars */
     position: relative;
 }
 /* ADD ON TRANSITION ON HEIGHT */
@@ -238,11 +238,13 @@ html, body { min-width: 400px; }
 /* Proven Results, Profits, Growth should look like h3 + white */
 .results h2,
 .results h3{
-    color:#ffffff;
-    font-weight:800;
-    font-size:1.5rem;
-    line-height:1.25;
+  color:#ffffff;
+  font-weight:800;
+  font-size:1.5rem;
+  line-height:1.25;
+  margin-bottom: 1rem;   /* ⬅️ consistent gap under “Profits” & “Growth” */
 }
+
 /* Hide the table caption “Yearly Revenue & Growth” in this section */
 .results .data-table caption{ display:none; }
 
