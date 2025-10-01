@@ -320,3 +320,13 @@ input:focus, textarea:focus{ outline:2px solid var(--blue); outline-offset:2px; 
 /* neutralize any prior experimental nudges on results panes/charts */
 .results [aria-labelledby="growth-title"] #bar-chart{ transform:none; }
 .results [aria-labelledby="profits-title"]{ transform:none; }
+
+/* Match the chart's label reserve so the bottoms line up exactly */
+@media (min-width: 48rem){
+  .results [aria-labelledby="profits-title"]{
+    padding-bottom: calc(36px + 1em); /* 36px chart reserve + ~1 line of label text */
+  }
+}
+.bar::after{
+  line-height: 1; /* add to your existing .bar::after rule */
+}
