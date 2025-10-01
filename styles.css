@@ -293,26 +293,27 @@ input:focus, textarea:focus{
   /* White block headings scale up slightly on medium */
   .intro h2, .services h2{ font-size:1.75rem; }
 
-  /* CONTACT FORM (desktop) */
-  .contact-form{
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1.5rem;      /* more horizontal space between columns */
-    row-gap: 1.5rem;         /* more vertical space between rows */
-  }
-  .contact-form .form-row{ display: contents; }  /* flatten wrappers */
+/* CONTACT FORM (desktop) */
+.contact-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;              /* ⬅️ applies to rows and columns */
+}
+.contact-form .form-row{ display: contents; } /* keep flattening */
+.contact-form .field{ min-width: 0; }         /* ⬅️ prevents 100%+border from collapsing the gap */
 
-  /* order: 1 Name | 2 Email | 3 Company | 4 Industry | 5 Message */
-  .contact-form .field:nth-of-type(1){ grid-column:1; } /* Full Name */
-  .contact-form .field:nth-of-type(2){ grid-column:2; } /* Email Address */
-  .contact-form .field:nth-of-type(3){ grid-column:1; } /* Company Name */
-  .contact-form .field:nth-of-type(4){ grid-column:2; } /* Industry */
-  .contact-form .field:nth-of-type(5){ grid-column:1; } /* How can we help you? */
+/* order: 1 Name | 2 Email | 3 Company | 4 Industry | 5 Message */
+.contact-form .field:nth-of-type(1){ grid-column:1; }
+.contact-form .field:nth-of-type(2){ grid-column:2; }
+.contact-form .field:nth-of-type(3){ grid-column:1; }
+.contact-form .field:nth-of-type(4){ grid-column:2; }
+.contact-form .field:nth-of-type(5){ grid-column:1; }
 
-  .contact-form .actions{
-    grid-column:2;           /* right column */
-    align-self:start;        /* top align with textarea */
-    margin-top:2rem;         /* match textarea’s box top */
-  }
+.contact-form .actions{
+  grid-column:2;
+  align-self:start;
+  margin-top:2rem;
+}
 }  /* <-- close the 48rem media query */
 
 /* MEDIA QUERIES (LARGE) */
@@ -325,3 +326,27 @@ input:focus, textarea:focus{
 /* neutralize any prior experimental nudges on results panes/charts */
 .results [aria-labelledby="growth-title"] #bar-chart { transform: none; }
 .results [aria-labelledby="profits-title"] { transform: none; }
+
+/* make sizing predictable */
+*, *::before, *::after { box-sizing: border-box; }
+
+.site-footer{
+  background:#0a0f1a;           /* matches header tone */
+  color:#fff;
+}
+.footer-inner{
+  text-align:center;
+  display:block;                /* simple centering */
+}
+.site-footer p,
+.site-footer address{
+  color:#fff;
+  margin: .25rem 0;
+}
+.site-footer address{ font-style: normal; }
+
+/* links in footer: default to white */
+.site-footer a{ color:#fff; text-decoration:none; }
+
+/* only mailto (email) is blue */
+.site-footer a[href^="mailto:"]{ color: var(--blue); }
